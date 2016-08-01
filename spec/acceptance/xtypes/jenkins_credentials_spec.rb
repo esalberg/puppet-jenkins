@@ -35,6 +35,8 @@ describe 'jenkins_credentials' do
       context 'BasicSSHUserPrivateKey' do
         it 'should work with no errors' do
           pp = base_manifest + <<-EOS
+            jenkins::plugin { 'ssh-credentials': }
+
             jenkins_credentials { 'a0469025-1202-4007-983d-0c62f230f1a7':
               ensure      => 'present',
               description => 'bar',
@@ -96,8 +98,6 @@ describe 'jenkins_credentials' do
         it 'should work with no errors' do
           pp = base_manifest + <<-EOS
             jenkins::plugin { 'plain-credentials':
-              pin => true,
-            }
 
             jenkins_credentials { '150b2895-b0eb-4813-b8a5-3779690c063c':
               ensure      => 'absent',
